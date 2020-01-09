@@ -1,0 +1,49 @@
+//
+// Mixins
+// --------------------------------------------------
+
+@import "./mixins/bg-image.less";
+@import "./mixins/clearfix";
+@import "./mixins/ellipsis.less";
+@import "./mixins//extend-click.less";
+@import "./mixins/size.less";
+
+.active() {
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: @black;
+    border-radius: inherit; /* inherit parent's border radius */
+    opacity: 0;
+    pointer-events: none
+  }
+
+  &:active::before {
+    opacity: 0.1
+  }
+}
+
+.bg-filter(@blur: 20px, @bg: rgba(7, 17, 27, 0.3)) {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background-size: cover;
+  filter: blur(@blur);
+  transform: scaleY(2);
+  z-index: -1;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: @bg;
+  }
+}
